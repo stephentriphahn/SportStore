@@ -18,7 +18,12 @@
 		<a class="navbar-brand" href="#">SPORTS STORE</a>
 	</div>
 
-	<div class="panel panel-default row" data-ng-controller="productListCtrl">
+	<div class="alert alert-danger" data-ng-show="data.error">
+		Error ({{data.error.status}}). The product data was unable to load properly
+		<a href="/app.html" class="alert-link">click here to try again</a>
+	</div>
+
+	<div class="panel panel-default row" data-ng-controller="productListCtrl" data-ng-hide="data.error">
 		<div class="col-xs-3">
 			<a data-ng-click="selectCategory()" class="btn btn-block btn-default btn-lg">Home</a>
 			<a data-ng-repeat="item in data.products | orderBy: 'category' | unique:'category'"
@@ -28,7 +33,7 @@
 			</a>
 		</div>
 		<div class="col-xs-8">
-			<div class="well" data-ng-repeat="item in data.products | filter:categoryFilterFn | range:selectedPage:pageSize">
+			<div class="well" data-ng-repeat="item in data.products | filter:categoryFilterFn | 		range:selectedPage:pageSize">
 				<h3>
 					<strong>{{item.name}}</strong>
 					<span class="pull-right label label-primary">
@@ -36,6 +41,11 @@
 					</span>
 				</h3>
 				<span class="lead">{{item.description}}</span>
+			</div>
+			<div class="pull-right btn-group">
+				<a data-ng-repeat="page in data.products | filter:categoryFilterFn | pageCount:pageSize" data-ng-click="selectPage($index + 1)" class="btn btn-default" ng-class="getPageClass($index + 1)">
+					{{$index + 1}}
+				</a>
 			</div>
 		</div>
 	</div>

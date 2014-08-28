@@ -3,13 +3,16 @@
 /* Controllers */
 
 angular.module("sportsStore")
-.controller("sportsStoreCtrl", function($scope) {
+.constant("dataUrl", "http://localhost:8000/app/data/products.json")
+.controller("sportsStoreCtrl", function($scope, $http, dataUrl) {
 	
-	$scope.data = {
-		products: [
-			{name: "product 1", description: "A product", category: "category 1", price: 100},
-			{name: "product 2", description: "Another product", category: "category 1", price: 110},
-			{name: "product 3", description: "A product", category: "category 2", price: 210},
-			{name: "product 4", description: "A product", category: "category 3", price: 202}]
-	};
+	$scope.data = {};
+
+	$http.get(dataUrl)
+		.success(function (data) {
+			$scope.data.products = data;
+		})
+		.error(function (error) {
+			$scope.data.error = error;
+		});
 });
