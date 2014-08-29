@@ -6,11 +6,12 @@
 	<link href="bower_components/bootstrap-3.2.0-dist/css/bootstrap.css" rel="stylesheet" />
 	<link href="bower_components/bootstrap-3.2.0-dist/css/bootstrap-theme.css" rel="stylesheet" />
 	<script>
-		angular.module("sportsStore", ["customFilters"]);
+		angular.module("sportsStore", ["customFilters", "cart"]);
 	</script>
 	<script src="js/controllers/sportsStore.js"></script>
 	<script src="js/filters/customFilters.js"></script>
 	<script src="js/controllers/productListControllers.js"/></script>
+	<script src="js/cart.js"></script>
 </head>
 
 <body ng-controller="sportsStoreCtrl">
@@ -23,32 +24,7 @@
 		<a href="/app.html" class="alert-link">click here to try again</a>
 	</div>
 
-	<div class="panel panel-default row" data-ng-controller="productListCtrl" data-ng-hide="data.error">
-		<div class="col-xs-3">
-			<a data-ng-click="selectCategory()" class="btn btn-block btn-default btn-lg">Home</a>
-			<a data-ng-repeat="item in data.products | orderBy: 'category' | unique:'category'"
-									data-ng-click="selectCategory(item)" class=" btn btn-block btn-default btn-lg"
-									data-ng-class="getCategoryClass(item)">
-				{{item}}
-			</a>
-		</div>
-		<div class="col-xs-8">
-			<div class="well" data-ng-repeat="item in data.products | filter:categoryFilterFn | 		range:selectedPage:pageSize">
-				<h3>
-					<strong>{{item.name}}</strong>
-					<span class="pull-right label label-primary">
-						{{item.price | currency}}
-					</span>
-				</h3>
-				<span class="lead">{{item.description}}</span>
-			</div>
-			<div class="pull-right btn-group">
-				<a data-ng-repeat="page in data.products | filter:categoryFilterFn | pageCount:pageSize" data-ng-click="selectPage($index + 1)" class="btn btn-default" ng-class="getPageClass($index + 1)">
-					{{$index + 1}}
-				</a>
-			</div>
-		</div>
-	</div>
+	<data-ng-include src="'partials/productList.html'"></ng-include>
 </body>
 
 </html>

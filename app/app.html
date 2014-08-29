@@ -6,16 +6,18 @@
 	<link href="bower_components/bootstrap-3.2.0-dist/css/bootstrap.css" rel="stylesheet" />
 	<link href="bower_components/bootstrap-3.2.0-dist/css/bootstrap-theme.css" rel="stylesheet" />
 	<script>
-		angular.module("sportsStore", ["customFilters"]);
+		angular.module("sportsStore", ["customFilters", "cart"]);
 	</script>
 	<script src="js/controllers/sportsStore.js"></script>
 	<script src="js/filters/customFilters.js"></script>
 	<script src="js/controllers/productListControllers.js"/></script>
+	<script src="js/cart.js"></script>
 </head>
 
 <body ng-controller="sportsStoreCtrl">
 	<div class="navbar navbar-inverse">
 		<a class="navbar-brand" href="#">SPORTS STORE</a>
+		<cart-summary />
 	</div>
 
 	<div class="alert alert-danger" data-ng-show="data.error">

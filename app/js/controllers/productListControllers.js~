@@ -1,7 +1,7 @@
 angular.module("sportsStore")
 	.constant("productListActiveClass", "btn-primary")
 	.constant("productListPageCount", 3)
-	.controller("productListCtrl", function ($scope, $filter, productListActiveClass, productListPageCount) {
+	.controller("productListCtrl", function ($scope, $filter, productListActiveClass, productListPageCount, cart) {
 
 	var selectedCategory = null;
 	
@@ -11,7 +11,7 @@ angular.module("sportsStore")
 	$scope.selectCategory = function (newCategory) {
 
 		selectedCategory = newCategory;
-		$scope.selectedPage = newPage;
+		$scope.selectedPage = 1;
 	}
 
 	$scope.selectPage = function (newPage) {
