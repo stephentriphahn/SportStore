@@ -6,12 +6,35 @@
 	<link href="bower_components/bootstrap-3.2.0-dist/css/bootstrap.css" rel="stylesheet" />
 	<link href="bower_components/bootstrap-3.2.0-dist/css/bootstrap-theme.css" rel="stylesheet" />
 	<script>
-		angular.module("sportsStore", ["customFilters", "cart"]);
+		angular.module("sportsStore", ["customFilters", "cart", "ngRoute"])
+		.config(function ($routeProvider) {
+			$routeProvider.when("/complete",{
+				templateUrl: "/app/partials/thankYou.html"
+			});
+		
+			$routeProvider.when("/placeOrder", {
+				templateUrl: "/app/partials/placeOrder.html"
+			});
+
+			$routeProvider.when("/checkout", {
+				templateUrl: "/app/partials/checkoutSummary.html"
+			});
+	
+			$routeProvider.when("/products", {
+				templateUrl: "/app/partials/productList.html"
+			});
+
+			$routeProvider.otherwise( {
+				templateUrl: "/app/partials/productList.html"
+			});
+		});
 	</script>
 	<script src="js/controllers/sportsStore.js"></script>
 	<script src="js/filters/customFilters.js"></script>
 	<script src="js/controllers/productListControllers.js"/></script>
 	<script src="js/cart.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="js/controllers/checkoutControllers.js"></script>
 </head>
 
 <body ng-controller="sportsStoreCtrl">
@@ -25,7 +48,7 @@
 		<a href="/app.html" class="alert-link">click here to try again</a>
 	</div>
 
-	<data-ng-include src="'partials/productList.html'"></ng-include>
+	<ng-view />
 </body>
 
 </html>
