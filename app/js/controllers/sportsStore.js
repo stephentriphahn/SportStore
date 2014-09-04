@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module("sportsStore")
-.constant("dataUrl", "http://localhost:8000/app/data/products.json")
+.constant("dataUrl", "http://localhost:2403/products")
 .controller("sportsStoreCtrl", function($scope, $http, dataUrl) {
 	
 	$scope.data = {};
