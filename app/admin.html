@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html data-ng-app="sportsStoreAdmin">
+<head>
+	<title>Administration</title>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
+	<link href="bower_components/bootstrap-3.2.0-dist/css/bootstrap.css" rel="stylesheet" />
+	<link href="bower_components/bootstrap-3.2.0-dist/css/bootstrap-theme.css" rel="stylesheet" />
+
+	<script>
+		angular.module("sportsStoreAdmin", ["ngRoute"])
+			.config(function($routeProvider) {
+			
+				$routeProvider.when("/login", {
+					templateUrl: "partials/adminLogin.html"
+				});
+
+				$routeProvider.when("/main" , {
+					templateUrl: "partials/adminMain.html"
+				});
+
+				$routeProvider.otherwise({
+					redirectTo: "/login"
+				});
+			});
+	</script>
+	<script src="js/controllers/adminControllers.js"></script>
+</head>
+
+<body>
+	<data-ng-view />
+</body>
+</html>
